@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,10 +31,9 @@ public class DemoApplication {
             return "User already exists!";
         }
 
-        User user = new User();
+        User user = new User(1L, "admin@example.com", LocalDate.of(2001, 1, 1));
         user.setNickname("admin");
         user.setPassword("encrypted-password");
-        user.setEmail("admin@example.com");
         user.setType("Super Admin");
         user.setCode("INIT-001");
 
