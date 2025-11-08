@@ -5,6 +5,9 @@ import services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
+import requests.CreateUserRequest;
+import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 
 @SpringBootApplication
 @RestController
@@ -26,7 +29,10 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    public static void main(String[] args) {
-        SpringApplication.run(UserController.class, args);
+    @PostMapping
+    public ResponseEntity<String> store(@Valid @RequestBody CreateUserRequest request) {
+        // Validation is automatic because of @Valid and your annotations
+        //userService.createUser(request); // Call your service to handle saving
+        return ResponseEntity.ok("User created successfully: " + request.nickname());
     }
 }
